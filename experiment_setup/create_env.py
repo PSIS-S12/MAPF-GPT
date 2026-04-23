@@ -1,7 +1,7 @@
 from gymnasium import Wrapper
 from loguru import logger
 from pogema import AnimationConfig, AnimationMonitor, pogema_v0
-from pogema.wrappers.metrics import AgentsDensityWrapper, RuntimeMetricWrapper
+from pogema.wrappers.metrics import RuntimeMetricWrapper
 from pogema_toolbox.create_env import MultiMapWrapper
 
 
@@ -35,7 +35,6 @@ class LogActions(Wrapper):
 
 def create_eval_env(config):
     env = pogema_v0(grid_config=config)
-    env = AgentsDensityWrapper(env)
     env = MultiMapWrapper(env)
     env = RuntimeMetricWrapper(env)
 
