@@ -58,7 +58,7 @@ def main():
     torch.backends.cudnn.deterministic = True
 
     env = create_eval_env(env_cfg)
-    env.enable_animation()
+    #env.enable_animation()
 
     algo = MAPFGPTInference(MAPFGPTInferenceConfig(path_to_weights=f'weights/MAPF-GPT-{args.model}.pt', device=args.device))
     algo.reset_states()
@@ -66,7 +66,7 @@ def main():
 
     if args.animation:
         svg_path = f"svg/{args.map_name}-{args.model}-seed-{args.seed}.svg"
-        env.save_animation(svg_path)
+        #env.save_animation(svg_path)
         ToolboxRegistry.info(f'Saved animation to: {svg_path}')
 
     ToolboxRegistry.success(results)
