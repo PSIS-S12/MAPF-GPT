@@ -1,0 +1,87 @@
+environment:
+  name: Environment
+  with_animation: false
+  on_target: nothing
+  max_episode_steps: 256
+  observation_type: MAPF
+  collision_system: soft
+  seed:
+    grid_search:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+  num_agents:
+    grid_search:
+    - 8
+    - 16
+    - 32
+    - 64
+    - 128
+  map_name:
+    grid_search:
+    - our-warehouse-50x50
+algorithms:
+  MAPF-GPT-6M:
+    name: MAPF-GPT
+    parallel_backend: balanced_dask
+    num_process: 2
+    path_to_weights: weights/MAPF-GPT-6M.pt
+    device: cuda
+results_views:
+  TabularView1:
+    type: tabular
+    drop_keys:
+    - seed
+    - map_name
+    print_results: true
+  experiment-SoC:
+    type: plot
+    x: num_agents
+    y: SoC
+    width: 3.0
+    height: 2.5
+    line_width: 2
+    use_log_scale_x: true
+    legend_font_size: 8
+    font_size: 8
+    name: Experiment SoC
+    ticks:
+    - 8
+    - 16
+    - 32
+    - 64
+    - 128
+  experiment-CSR:
+    type: plot
+    x: num_agents
+    y: CSR
+    width: 3.0
+    height: 2.5
+    line_width: 2
+    use_log_scale_x: true
+    legend_font_size: 8
+    font_size: 8
+    name: Experiment CSR
+    ticks:
+    - 8
+    - 16
+    - 32
+    - 64
+    - 128
